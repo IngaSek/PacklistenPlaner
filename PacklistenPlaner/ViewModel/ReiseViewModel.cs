@@ -140,28 +140,6 @@ public partial class ReiseViewModel : ObservableValidator
         OnPropertyChanged(nameof(Packlisten));
     }
 
-    /*partial void OnSelectedEintragChanged(Eintrag? oldValue, Eintrag newValue)
-    {
-        if(oldValue == null || oldValue.Verantwortlicher == null) 
-        { 
-            return; 
-        }
-        foreach (var packliste in reise.Packlisten)
-        { 
-            if (packliste.Eintraege.Contains(oldValue))
-            {
-                foreach (var eintrag in packliste.Eintraege)
-                {
-                    if (eintrag.ToString() == oldValue.ToString())
-                    {
-                        eintrag.Verantwortlicher = oldValue.Verantwortlicher;
-                        return;
-                    }
-                }
-            }
-        }
-    }*/
-
     [RelayCommand(CanExecute = nameof(IsValid))]
     public void Ok()
     {
@@ -175,10 +153,8 @@ public partial class ReiseViewModel : ObservableValidator
         {
             foreach (var eintrag in packliste.Eintraege)
             {
-                // Sicherstellen, dass der Verantwortliche korrekt zugeordnet ist
                 if (eintrag.Verantwortlicher != null)
                 {
-                    // Suche die entsprechende Person aus AllePersonen
                     var person = AllePersonen.FirstOrDefault(p => p.Name == eintrag.Verantwortlicher.Name);
                     if (person != null)
                     {
@@ -267,7 +243,7 @@ public partial class ReiseViewModel : ObservableValidator
                 {
                     foreach (var person in AllePersonen)
                     {
-                        if (person.PersonID == eintrag.Verantwortlicher.PersonID)
+                        if (person.Name == eintrag.Verantwortlicher.Name)
                         {
                             eintrag.Verantwortlicher = person;
                             break;

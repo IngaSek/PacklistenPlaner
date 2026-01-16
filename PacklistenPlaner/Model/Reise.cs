@@ -12,7 +12,7 @@ public class Reise
     public string Titel { get; set; }
     public DateTime Startdatum { get; set; }
     public DateTime Enddatum { get; set; }
-    public int Tage { get { return (Enddatum - Startdatum).Days; } }
+    public int Tage { get { return (Enddatum - Startdatum).Days + 1; } }
     public string Beschreibung { get; set; }
     public int Status 
     { 

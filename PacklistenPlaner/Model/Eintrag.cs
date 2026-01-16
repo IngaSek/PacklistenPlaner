@@ -10,7 +10,6 @@ namespace PacklistenPlaner;
 public class Eintrag : Gegenstand
 {
     public int EintragID { get; set; } = 0;
-
     public bool Status { get; set; } = false;
     public int Menge { get; set; }
     public Person Verantwortlicher { get; set; } = null;
